@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  generateName: asdf
+  namespace: demo-ns
+  labels:
+    app: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo-pod
+        image: hadarserver.jfrog.io/default-docker-local/hadar/demo:2.0
+        ports:
+        - containerPort: 80
