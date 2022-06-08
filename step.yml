@@ -26,7 +26,6 @@ metadata:
         datree-policy-check:
           title: Run Datree policy check
           type: datree/datree-policy-check
-          stage: "datree-policy-check"
           arguments:
             DATREE_TOKEN: "${{DATREE_TOKEN}}"
             INPUT_PATH: 'fileName.yaml'
@@ -35,7 +34,6 @@ metadata:
         datree-policy-check:
           title: Run Datree policy check
           type: datree/datree-policy-check
-          stage: "datree-policy-check"
           arguments:
             DATREE_TOKEN: "${{DATREE_TOKEN}}"
             INPUT_PATH: 'my/chart/directory'
