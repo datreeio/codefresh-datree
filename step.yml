@@ -1,0 +1,100 @@
+version: '1.0'
+kind: step-type
+metadata:
+  name: datree/datree-policy-check
+  version: 0.0.4
+  isPublic: true
+  description: >-
+    This action runs the Datree CLI against given k8s configuration file/s in your repository, featuring full Helm and Kustomize support.
+  sources:
+    - 'https://github.com/datreeio/codefresh-datree'
+  stage: incubating
+  maintainers:
+    - name: Hadar Cohen
+      email: hadar@datree.io
+  categories:
+    - stability
+  official: false
+  tags: [kubernetes, k8s]
+  icon:
+    type: svg
+    url: 'https://raw.githubusercontent.com/datreeio/datree/main/images/datree-logo.svg'
+    background: '#f4f4f4'
+  examples:
+    - description: Basic yaml
+      workflow:
+        datree-policy-check:
+          title: Run Datree policy check
+          type: datree/datree-policy-check
+          stage: "datree-policy-check"
+          arguments:
+            DATREE_TOKEN: "${{DATREE_TOKEN}}"
+            INPUT_PATH: 'fileName.yaml'
+    - description: Helm chart
+      workflow:
+        datree-policy-check:
+          title: Run Datree policy check
+          type: datree/datree-policy-check
+          stage: "datree-policy-check"
+          arguments:
+            DATREE_TOKEN: "${{DATREE_TOKEN}}"
+            INPUT_PATH: 'my/chart/directory'
+            IS_HELM_CHART: true
+            HELM_ARGUMENTS: "--values values.yaml"
+  latest: true
+  id: 
+spec:
+  arguments: |-
+    {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "additionalProperties": false,
+        "patterns": [],
+        "required": [
+          "DATREE_TOKEN",
+          "INPUT_PATH"
+        ],
+        "properties": {
+            "DATREE_TOKEN": {
+                "type": "string",
+                "description": "Datree account token"
+            },
+            "INPUT_PATH": {
+                "type": "string",
+                "description": "File/s to be tested"
+            },
+            "CLI_ARGUMENTS": {
+                "type": "string",
+                "description": "Datree CLI arguments as specified here: https://hub.datree.io/setup/cli-arguments#flags"
+            },
+            "IS_HELM_CHART": {
+                "type": ["boolean"],
+                "description": "Is the desired path a Helm chart?"
+            },
+            "HELM_ARGUMENTS": {
+                "type": "string",
+                "description": "The Helm arguments to be used, if the path is a Helm chart"
+            },
+            "IS_KUSTOMIZATION": {
+                "type": "boolean",
+                "description": "Is the desired path a Kustomization?"
+            },
+            "KUSTOMIZE_ARGUMENTS": {
+                "type": "string",
+                "description": "The Kustomize arguments to be used, if the path is a Kustomization"
+            }
+        }
+    }
+  steps:
+    main:
+      name: datree-policy-check
+      image: 'datree/codefresh-datree'
+      environment:
+        - 'DATREE_TOKEN=${{DATREE_TOKEN}}'
+        - 'INPUT_PATH=${{INPUT_PATH}}'
+        - 'CLI_ARGUMENTS=${{CLI_ARGUMENTS}}'
+        - 'IS_HELM_CHART=${{IS_HELM_CHART}}'
+        - 'HELM_ARGUMENTS=${{HELM_ARGUMENTS}}'
+        - 'IS_KUSTOMIZATION=${{IS_KUSTOMIZATION}}'
+        - 'KUSTOMIZE_ARGUMENTS=${{KUSTOMIZE_ARGUMENTS}}'

@@ -59,7 +59,7 @@ datree-policy-check:
     stage: "datree-policy-check"
     arguments:
       DATREE_TOKEN: "${{DATREE_TOKEN}}"
-      INPUT_PATH: 'fileName.yaml'
+      INPUT_PATH: 'my/chart/directory'
       IS_HELM_CHART: true
       HELM_ARGUMENTS: "--values values.yaml"
 ```
@@ -73,6 +73,6 @@ datree-policy-check:
     stage: "datree-policy-check"
     arguments:
       DATREE_TOKEN: "${{DATREE_TOKEN}}"
-      INPUT_PATH: 'fileName.yaml'
+      INPUT_PATH: 'my/kustomization/directory'
       IS_KUSTOMIZATION: true
 ```
