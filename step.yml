@@ -54,6 +54,11 @@ spec:
           "INPUT_PATH"
         ],
         "properties": {
+            "WORKING_DIRECTORY": {
+              "type": "string",
+              "description": "The directory to which the repository is cloned. It can be an explicit path in the container’s file system, or a variable that references another step. The default value is '/codefresh/volume/${{CF_REPO_NAME}}'",
+              "default": "/codefresh/volume/${{CF_REPO_NAME}}"
+          },
             "DATREE_TOKEN": {
                 "type": "string",
                 "description": "Datree account token"
@@ -64,7 +69,8 @@ spec:
             },
             "CLI_ARGUMENTS": {
                 "type": "string",
-                "description": "Datree CLI arguments as specified here: https://hub.datree.io/setup/cli-arguments#flags"
+                "description": "Datree CLI arguments as specified here: https://hub.datree.io/setup/cli-arguments#flags",
+                "default": ""
             },
             "IS_HELM_CHART": {
                 "type": ["boolean"],
@@ -72,7 +78,8 @@ spec:
             },
             "HELM_ARGUMENTS": {
                 "type": "string",
-                "description": "The Helm arguments to be used, if the path is a Helm chart"
+                "description": "The Helm arguments to be used, if the path is a Helm chart",
+                "default": ""
             },
             "IS_KUSTOMIZATION": {
                 "type": "boolean",
@@ -80,7 +87,8 @@ spec:
             },
             "KUSTOMIZE_ARGUMENTS": {
                 "type": "string",
-                "description": "The Kustomize arguments to be used, if the path is a Kustomization"
+                "description": "The Kustomize arguments to be used, if the path is a Kustomization",
+                "default": ""
             }
         }
     }
@@ -89,6 +97,7 @@ spec:
       name: datree-policy-check
       image: 'datree/codefresh-datree'
       environment:
+        - 'WORKING_DIRECTORY=${{WORKING_DIRECTORY}}'
         - 'DATREE_TOKEN=${{DATREE_TOKEN}}'
         - 'INPUT_PATH=${{INPUT_PATH}}'
         - 'CLI_ARGUMENTS=${{CLI_ARGUMENTS}}'

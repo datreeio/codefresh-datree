@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# we need to cd into the repo directory since the default working dir is its parent
+cd $WORKING_DIRECTORY
+
 if [ -z "$DATREE_TOKEN" ]; then
     echo "No account token configured, see https://github.com/datreeio/action-datree for instructions"
     exit 1
