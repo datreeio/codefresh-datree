@@ -24,7 +24,7 @@ The following parameters determine the plugin's behavior:
 *For more information and examples of using this plugin with Helm/Kustomize, see below*
 
 ## Examples
-Here is an example pipeline that runs a Datree policy check on a file in the repository. This example uses a shared secret variable for the CLI token (can be configured via the codefresh dashboard):
+Here is an example pipeline that runs a Datree policy check on a file in the repository. This example uses a shared secret variable for the CLI token called DATREE_TOKEN (can be configured via the codefresh dashboard):
 ```yaml
 version: "1.0"
 stages:
