@@ -28,7 +28,7 @@ metadata:
           type: datree/datree-policy-check
           arguments:
             DATREE_TOKEN: "${{DATREE_TOKEN}}"
-            INPUT_PATH: 'fileName.yaml'
+            INPUT_PATH: "fileName.yaml"
     - description: Helm chart
       workflow:
         datree-policy-check:
@@ -36,7 +36,7 @@ metadata:
           type: datree/datree-policy-check
           arguments:
             DATREE_TOKEN: "${{DATREE_TOKEN}}"
-            INPUT_PATH: 'my/chart/directory'
+            INPUT_PATH: "my/chart/directory"
             IS_HELM_CHART: true
             HELM_ARGUMENTS: "--values values.yaml"
   latest: true
