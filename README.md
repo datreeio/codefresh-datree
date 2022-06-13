@@ -2,6 +2,8 @@
 A Codefresh plugin that runs the Datree CLI.  
 Use this plugin to easily scan your k8s manifest files, Helm charts and Kustomizations for misconfigurations as part of your CI.
 
+Click [here](https://codefresh.io/steps/step/datree%2Fdatree-policy-check) to view the plugin in the Codefresh marketplace.
+
 ## Setup
 Get started in 2 simple steps:  
 
